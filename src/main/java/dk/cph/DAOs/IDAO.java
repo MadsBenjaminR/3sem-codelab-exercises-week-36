@@ -1,5 +1,7 @@
 package dk.cph.DAOs;
 
+import dk.cph.entities.Course;
+
 import java.util.Set;
 
 public interface IDAO<T> {
@@ -9,4 +11,6 @@ public interface IDAO<T> {
     Set<T> getAll();
 
     void delete(T t);
+
+    void update(T t);
 }
