@@ -1,6 +1,7 @@
 package dk.cph.DAOs;
 
 import dk.cph.HibernateConfig;
+import dk.cph.entities.Course;
 import dk.cph.entities.Teacher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -39,6 +40,11 @@ public class TeacherDAO implements IDAO<Teacher> {
 
     @Override
     public void delete(Teacher teacher) {
+
+    }
+
+    @Override
+    public void update(Teacher teacher) {
 
     }
 }
