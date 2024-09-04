@@ -45,12 +45,10 @@ public class Student {
     private Set<Course> courses = new HashSet<>();
 
 
-
-
     @ManyToMany
     private Set<Student> students;
 
-    public void addCourse(Course course) {
+    public void addCourseOnStudent(Course course) {
         if (courses != null) {
         course.getStudent().add(this);
         this.courses.add(course);
@@ -62,11 +60,7 @@ public class Student {
             course.getStudent().remove(this);
             this.courses.remove(course);
         }
-
     }
-
-
-
 
 
 
