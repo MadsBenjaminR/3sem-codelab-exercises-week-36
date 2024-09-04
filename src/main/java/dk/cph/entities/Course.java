@@ -33,11 +33,12 @@ public class Course {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Student> student;
 
     @ManyToOne()
     private Teacher teacher;
+
 
 public void addStudent(Student student) {
 
@@ -49,5 +50,8 @@ public void removeTeacher(Teacher teacher) {
 }
 
 
-
+    public static void main(String[] args) {
+        Course course = new Course();
+        course.setCourseName(CourseName.MATH);
+    }
 }
