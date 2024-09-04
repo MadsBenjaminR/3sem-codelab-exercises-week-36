@@ -33,8 +33,8 @@ public class Teacher {
         this.courses.add(course);
     }
 
-    public void removeTeacher(Course course) {
-        course.setTeacher(null);
+    public void removeCourseFromTeacher(Course course) {
+        course.removeTeacher();
         this.courses.remove(course);
     }
 

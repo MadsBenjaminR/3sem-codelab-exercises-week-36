@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.ManyToAny;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,17 +35,19 @@ public class Course {
     private LocalDate endDate;
 
     @ManyToMany
-    private Set<Student> student;
+    private Set<Student> student = new HashSet<>();
 
     @ManyToOne()
     private Teacher teacher;
 
+
 public void addStudent(Student student) {
+    this.student.add(student);
 
 }
-public void removeTeacher(Teacher teacher) {
-    this.teacher.removeTeacher(this);
-    this.setTeacher(null);
+public void removeTeacher() {
+    this.teacher.removeCourseFromTeacher(this);
+    this.teacher = null;
 
 }
 
