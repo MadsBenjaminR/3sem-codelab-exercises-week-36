@@ -25,12 +25,20 @@ public class Teacher {
     private String email;
     private String name;
     private String zoom;
-    @OneToMany(mappedBy = "Course")
+    @OneToMany(mappedBy = "teacher")
     private Set<Course> courses;
 
     public void addTeacher(Course course) {
-        course.setTeacher(this);
-        this.courses.add(course);
+        if (courses == null) {
+            course.setTeacher(this);
+            this.courses.add(course);
+        }
+    }
+    public void addCourseToTeacher(Course course) {
+        if (courses != null) {
+            course.setTeacher(this);
+            this.courses.add(course);
+        }
     }
 
     public void removeCourseFromTeacher(Course course) {

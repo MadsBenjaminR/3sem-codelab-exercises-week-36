@@ -12,9 +12,19 @@ import java.util.stream.Collectors;
  * @author: Jeppe Koch
  */
 public class CourseDAO implements IDAO<Course> {
+
     EntityManagerFactory emf;
+    public CourseDAO(EntityManagerFactory emf) {
+        this.emf = emf;
+
+    }
     @Override
     public void create(Course course) {
+        try(EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.persist(course);
+            em.getTransaction().commit();
+        }
 
     }
 

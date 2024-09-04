@@ -42,6 +42,15 @@ public class Course {
     @ManyToOne()
     private Teacher teacher;
 
+    public void addTeacherToCourse(Teacher teacher) {
+        if (teacher != null) {
+            this.teacher = teacher;
+            teacher.getCourses().add(this);
+        }
+
+    }
+
+
 
 public void addStudent(Student student) {
     this.student.add(student);

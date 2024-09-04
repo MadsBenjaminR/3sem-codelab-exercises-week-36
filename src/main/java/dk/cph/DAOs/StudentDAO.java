@@ -6,6 +6,7 @@ import dk.cph.entities.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,9 +16,10 @@ import java.util.Set;
  */
 public class StudentDAO implements IDAO<Student> {
     EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+
     @Override
     public void create(Student student) {
-        try(EntityManager em = emf.createEntityManager()) {
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(student);
             em.getTransaction().commit();
@@ -35,7 +37,6 @@ public class StudentDAO implements IDAO<Student> {
     }
 
 
-
     @Override
     public void delete(Student student) {
 
@@ -49,14 +50,17 @@ public class StudentDAO implements IDAO<Student> {
             Student foundStudent = em.find(Student.class, student.getId());
 
             if (foundStudent != null) {
+                // Initialize the courses set if it's null
+                if (student.getCourses() == null) {
+                    student.setCourses(new HashSet<>());
+                }
 
                 for (Course updatedCourse : student.getCourses()) {
                     boolean courseFound = false;
                     for (Course existingCourse : foundStudent.getCourses()) {
-
                         if (existingCourse.getId() == updatedCourse.getId()) {
                             existingCourse.setCourseName(updatedCourse.getCourseName());
-
+                            // Ensure you handle all necessary fields that need updating
                             courseFound = true;
                             break;
                         }

@@ -1,6 +1,10 @@
 package dk.cph;
 
 
+import dk.cph.DAOs.StudentDAO;
+import dk.cph.entities.Course;
+import dk.cph.entities.Student;
+import dk.cph.entities.Teacher;
 import jakarta.persistence.EntityManagerFactory;
 
 
@@ -35,9 +39,9 @@ public class HibernateConfig {
     }
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
-
-       // configuration.addAnnotatedClass(Employee.class);
-        //configuration.addAnnotatedClass(Address.class);
+            configuration.addAnnotatedClass(Student.class);
+            configuration.addAnnotatedClass(Course.class);
+            configuration.addAnnotatedClass(Teacher.class);
 
 
     }
