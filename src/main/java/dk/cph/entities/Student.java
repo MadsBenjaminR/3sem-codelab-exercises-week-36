@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -41,16 +42,27 @@ public class Student {
     }
 
     @ManyToMany(mappedBy = "student")
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
-    public void addCourse(Course course){
-        course.setCourse(this);
+
+
+
+    @ManyToMany
+    private Set<Student> students;
+
+    public void addCourse(Course course) {
+        if (courses != null) {
+        course.getStudent().add(this);
         this.courses.add(course);
+        }
     }
 
-    public void removeCourse(Course course){
-        course.setCourse(this);
-        this.courses.remove(course);
+    public void removeCourseFromStudent(Course course) {
+        if (courses != null) {
+            course.getStudent().remove(this);
+            this.courses.remove(course);
+        }
+
     }
 
 
@@ -58,6 +70,5 @@ public class Student {
 
 
 
+    }
 
-
-}
