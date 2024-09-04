@@ -41,4 +41,9 @@ public class TeacherDAO implements IDAO<Teacher> {
     public void delete(Teacher teacher) {
 
     }
+
+    @Override
+    public void update(Teacher teacher) {
+
+    }
 }
