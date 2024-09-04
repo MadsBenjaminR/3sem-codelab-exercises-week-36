@@ -8,6 +8,5 @@ public interface IDAO<T> {
     T getById(int id);
     Set<T> getAll();
 
-    void update(T t);
     void delete(T t);
 }

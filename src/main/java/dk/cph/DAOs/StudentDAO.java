@@ -1,6 +1,9 @@
 package dk.cph.DAOs;
 
+import dk.cph.HibernateConfig;
 import dk.cph.entities.Student;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 import java.util.Set;
 
@@ -10,9 +13,14 @@ import java.util.Set;
  * @author: Jeppe Koch
  */
 public class StudentDAO implements IDAO<Student> {
+    EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
     @Override
     public void create(Student student) {
-
+        try(EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.persist(student);
+            em.getTransaction().commit();
+        }
     }
 
     @Override
@@ -25,10 +33,7 @@ public class StudentDAO implements IDAO<Student> {
         return Set.of();
     }
 
-    @Override
-    public void update(Student student) {
 
-    }
 
     @Override
     public void delete(Student student) {
